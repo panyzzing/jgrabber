@@ -1,0 +1,138 @@
+body {
+    background-color: black;
+    color: green;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.main-menu {
+    list-style-type: none;
+    height: 49px;
+    width: 100%;
+    margin: auto;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #aaa;
+    background-color: black;
+}
+
+ul.main-menu li {
+    float: left;
+}
+
+input:hover {
+    border-color: yellow;
+}
+
+#found-books {
+    padding: 20px 0px;
+}
+
+#found-books input {
+    border-radius: 10px;
+}
+
+#found-books tr:first-child td {
+    padding-bottom: 4px;
+    font-weight: bold;
+}
+
+#found-books table {
+    width: 100%;
+}
+#found-books td {
+    width: 340px;
+}
+
+#found-books td + td {
+    width: 20px;
+}
+
+#found-books td + td + td {
+    text-align: center;
+}
+
+/* text paragraph */
+div.par {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+
+ul.main-menu a {
+    background-repeat: no-repeat;
+    background-position: right;
+    padding-right: 32px;
+    padding-left: 32px;
+    display: block;
+    line-height: 47px;
+    text-decoration: none;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 21px;
+    color: #8C8C8C;
+}
+
+ul.main-menu li.current a {
+    color: #FFF;
+}
+
+ul.main-menu a:hover {
+    color: yellow;
+}
+
+.base-form .row {
+    float: none;
+    clear: both;
+    width: 420px;
+    padding: 9px 0px;
+}
+
+.base-form .row .cap {
+    float: left;
+}
+
+.base-form span.cap {
+    padding-top: 4px;
+}
+
+.base-form .row .hint {
+    float: right;
+    width: 300px;
+}
+
+.base-form .row input[type=text] {
+    width: 300px;
+    border-radius: 10px;
+    padding: 2px 6px;
+    color: white;
+    background-color: black;
+    float: right;
+}
+
+.base-form input[type=button] {
+    border-radius: 10px;
+    float: right;
+}
+
+
+div.body-content {
+    padding: 10px;
+    width: 800px;
+    margin: 0px auto;
+}
+
+div.vline {
+    z-index: -1;
+    position: fixed;
+    left: 50%;
+    margin-left: -410px;
+    width: 820px;
+    height: 100%;
+    border-left: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+}
+
+div.reset {
+    clear: both;
+    float: none;
+}

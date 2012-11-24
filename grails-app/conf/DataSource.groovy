@@ -15,7 +15,7 @@ environments {
         dataSource {
             dbCreate = "update"
             driverClassName = "com.mysql.jdbc.Driver"
-            url = "jdbc:mysql://localhost/grails1"
+            url = "jdbc:mysql://localhost/jgrabber"
             username = "root"
             password = "1"
         }

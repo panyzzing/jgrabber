@@ -2,11 +2,11 @@ package org.example
 
 class Book {
 
-    String author
+    String isbn
     String title
 
     static constraints = {
         title(blank: false)
-        author(blank: false)
+        isbn(blank: false)
     }
 }
