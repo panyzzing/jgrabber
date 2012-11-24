@@ -28,11 +28,11 @@
 <div class="vline"></div>
 <ul class="main-menu">
     <li
-        <g:if test="${groovyPageFileName == 'find'}">class="current"</g:if>>
+        <g:if test="${actionName == 'find'}">class="current"</g:if>>
         <g:link action="find">Find</g:link>
     </li>
     <li
-        <g:if test="${groovyPageFileName == 'add-book'}">class="current"</g:if>>
+        <g:if test="${actionName == 'addBook'}">class="current"</g:if>>
         <g:link action="addBook">Add book</g:link>
     </li>
 </ul>

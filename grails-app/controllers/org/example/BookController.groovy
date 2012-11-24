@@ -7,4 +7,8 @@ class BookController {
     def find() {
 
     }
+
+    def addBook() {
+
+    }
 }
