@@ -7,15 +7,15 @@
                     }
                 });
         $('#find').click(function () {
-            $.ajax({ // context other than ROOT? ?
-                url:"/find-book",
+            $.ajax({
+                url:"${createLink(action: 'findBook')}",
                 dataType:'text',
                 data:{
                     isbn:$('#isbn-pattern').val(),
                     title:$('#title-pattern').val()
                 },
                 error:function (e, b, c) {
-                    $('#found-books').html(c);
+                    $('#found-books').html("Error: " + c);
                 },
                 success:function (ok, b, c) {
                     $('#found-books').html(ok);

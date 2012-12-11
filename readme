@@ -1,0 +1,128 @@
+
+       Web Application for Downloading Books from Google Service
+
+Google Books service prevent access to all pages of a book
+to a HTTP client from one IP address.
+
+This site tries to bypass this limitation using multiple IP addresses.
+To get multiple addresses the site acts over HTTP proxies.
+
+Site users should add new HTTP proxies to use this site.
+A user can create own HTTP proxy on his computer even if it's behind
+NAT with miredo (IPv6 tunnel over NAT) and inform about it the site.
+
+The site doesn't hold book content. It's redundant. Google Service
+already does this job. The site need only to know urls to book pages.
+Url is much more smaller than page content.
+
+It's also a law advantage because copying reference to copy righted information
+is always legal rather than its content.
+
+
+There are download threads in the site. Each download thread works in
+the infinite loop. It takes an incomplete book from the ordered queue,
+selects all proxies are not used for this book.
+The book is skipped the list of applicable proxies is empty.
+
+
+Two threads cannot download the same book.
+
+Queue element is ordered by score. Score of book is sum of request
+scores to download this book. A user can send only one request
+to one book. Request score is 1 + user  priority.
+
+User  priority is dynamic. It cannot influence much because
+old user can overload site conveyor with many download requests
+newbie user cannot download any new book they want event if
+add many new good HTTP proxies.
+
+Web application should be democratic. If 3 newbies want to download
+the same book and one old user wants to get another and 1 download
+thread is available then newbies should win.
+
+Iteration of process of loading one book is not long.
+So preemtion of iteration is not intended. After download thread
+tried last page with last proxy it returns the book back to pool.
+Using at one time all proxies to get the book can be treated as DOS or DDOS.
+So each proxy should have persistent property number requests.
+This field is zeroed by some cron quartz job.
+
+So it's better to download pages from different books.
+It need to prohibit proxy sharing and use limited set proxies for
+book.
+
+And selects first available from the queue.
+
+Let's detail the user priority. The priority can be from 0 to N (it's about 10).
+User cannot read many books. Each priority unit is equal M new references
+(each per new page in any book previously unknown). Lets M = 100 pages.
+
+
+    USE CASES
+
+   1 Adding new book to download queue
+
+1) goto /
+2) press button "find". Table with found books ordered by score.
+3) press button "add book". Form for adding new book.
+4) type url to info page with json. title is copied. press add.
+   Page with message that the book has been  successful added.
+   Also page has url to search page
+
+   2 Getting page refs of downloaded book
+
+1) goto /
+2) input title pattern. press button "find".
+   Table with found books ordered by score.
+   Click on required book. Goto to book details page.
+3) Click button get as bash download script.
+   User get save file prompt with generated bash script.
+
+   3 Render pdf from images
+
+1) goto /render
+2) click "browse file".
+3) zip folder with png images with numeric prefix with equal length
+   each image.
+4) selected archive file
+5) click "upload"
+6) get prompt for save pdf document rendered from uploaded
+   images.
+
+   4 Add new proxy
+
+1) goto /add-proxy
+2) enter ip address and port
+3) click "add". redirect to page with result of operation.
+
+   5 List proxies
+
+1) goto /list-proxies
+2) filter by created, number got pages, port pattern, ip pattern
+           order by efficiency = got pages / tried pages
+   table with columns: ip, port, status (idle, download some book),
+                       created, downloaded pages, tried pages.
+   max rows 100 in table no paging.
+
+
+
+TODO:
+book details page
+add proxy page
+list proxy page
+main download algorithm
+authentication with spring security.
+control user activity: limit download request,
+    adding proxies, number signins,
+    total http request with servlet filter.
+registration over email
+implement asynchronous adding download request with atmosphere
+comet notification.
+send first request getting content always over http proxy.
+send first request getting content over asynchronous http client.
+notification about download complete with email
+  + attaching urls to all pages
+
+take first url from google book api searching by isbn or title
+  instead manual enter first url
+
